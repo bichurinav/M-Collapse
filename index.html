@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>MCollapse</title>
+  </head>
+  <style>
+    .body {
+      height: 70px;
+      position: relative;
+      top: 10px;
+    }
+    .flex {
+      display: flex;
+      align-items: center;
+    }
+    .space-between {
+      justify-content: space-between;
+    }
+    .header {
+      padding: 10px;
+      border-radius: 12px;
+      border: solid 1px silver;
+    }
+    .wrapper {
+      padding: 20px;
+      border: solid 1px red;
+    }
+    .arrow-down {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 24px;
+      background: rgb(245, 122, 101);
+      color: #fff;
+    }
+    .container {
+      width: 600px;
+      margin: 0 auto;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div m-collapse="collapse">
+        <div m-collapse-container class="wrapper">
+          <div class="header" m-collapse-header>
+            <div class="flex space-between">
+              <span>Header</span>
+              <div class="arrow-down" m-collapse-arrow>
+                <span> &#11015;</span>
+              </div>
+            </div>
+          </div>
+          <div class="body" m-collapse-body="visible">
+            Что за словесными, горами в стране гласных и согласных живут рыбные
+            тексты.
+          </div>
+        </div>
+        <hr />
+        <div m-collapse-container class="wrapper">
+          <div class="header" m-collapse-header>Header 2</div>
+          <div class="body" m-collapse-body="visible">
+            Далеко-далеко за словесными горами, в стране гласных и согласных
+            живут рыбные тексты. Языкового ipsum семь всемогущая вскоре гор не,
+            щеке океана коварный пунктуация, приставка последний, вершину раз
+            залетают
+          </div>
+        </div>
+        <hr />
+        <div m-collapse-container class="wrapper">
+          <div class="header" m-collapse-header>Header 3</div>
+          <div class="body" m-collapse-body>
+            Далеко-далеко за словесными горами, в стране гласных и согласных
+            живут рыбные тексты. Языкового ipsum семь всемогущая вскоре гор не,
+            щеке океана коварный пунктуация, приставка последний, вершину раз
+            залетают
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./src/m-collapse.js" type="module"></script>
+  </body>
+</html>
