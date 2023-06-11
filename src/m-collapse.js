@@ -17,11 +17,22 @@ class MCollapse {
     );
     this.$main = document.querySelector(`[m-collapse='${this.name}']`);
     this.$containers = this.$main.querySelectorAll("[m-collapse-container]");
+    this.items = [];
   }
 
   init() {
     this.$containers.forEach((item, idx) => {
-      new MCollapseItem(item, idx, this.name, this.options);
+      const el = new MCollapseItem(item, idx, this.name, this.options);
+      this.items.push(el);
+    });
+    return this;
+  }
+
+  destroy() {
+    this.items.forEach((item) => {
+      item.$header.removeEventListener("click", item.headerClick);
+      item.$container.removeEventListener("click", item.containerClick);
+      item.$container.removeEventListener("click", item.bodyClick);
     });
   }
 
@@ -49,6 +60,9 @@ class MCollapseItem extends MCollapse {
     this.options = options;
     this.bodyHeight = this.$body.clientHeight;
     this.timeout = null;
+    this.headerClick = null;
+    this.bodyClick = null;
+    this.containerClick = null;
     this._init();
   }
 
@@ -90,23 +104,27 @@ class MCollapseItem extends MCollapse {
       }
     };
 
-    this.$header.addEventListener("click", (e) => {
+    this.headerClick = (e) => {
       e.stopPropagation();
       toggleAction();
-    });
+    };
+
+    this.containerClick = () => {
+      toggleAction();
+    };
+
+    this.bodyClick = (e) => {
+      e.stopPropagation();
+      this._setHideStyles(this.$body, this.$arrow);
+    };
+
+    this.$header.addEventListener("click", this.headerClick);
 
     if (this.options.containerClick) {
-      this.$container.addEventListener("click", () => {
-        toggleAction();
-      });
+      this.$container.addEventListener("click", this.containerClick);
     }
     if (this.options.bodyClick) {
-      this.$body.addEventListener("click", (e) => {
-        e.stopPropagation();
-        this._animateArrow("down");
-        this._setHideStyles(this.$body);
-      });
-      return;
+      this.$body.addEventListener("click", this.bodyClick);
     }
   }
 
@@ -203,6 +221,4 @@ class MCollapseItem extends MCollapse {
   }
 }
 
-new MCollapse("collapse", {
-  accordion: true,
-}).init();
+new MCollapse("collapse").init();
