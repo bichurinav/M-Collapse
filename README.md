@@ -7,6 +7,14 @@ JS: Collapse or Accordion (Vanilla Plugin)
   Contact Me
 </a>
 
+## Режим Collapse
+
+![hippo](./assets/collapse.gif)
+
+## Режим Accordion
+
+![hippo](./assets/accordion.gif)
+
 ## HTML-разметка
 
 - атрибут <b>m-collapse="ЛЮБОЕ_ИМЯ"</b> (обертка, где лежат элементы)
