@@ -32,7 +32,7 @@ class MCollapse {
     this.items.forEach((item) => {
       item.$header.removeEventListener("click", item.headerClick);
       item.$container.removeEventListener("click", item.containerClick);
-      item.$container.removeEventListener("click", item.bodyClick);
+      item.$body.removeEventListener("click", item.bodyClick);
     });
   }
 
